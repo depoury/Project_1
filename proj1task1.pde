@@ -4,6 +4,7 @@ int ycounter = 0;
 int red = 255;
 int blue = 0;
 int green = 255;
+int c = color(red, green, blue);
 
 int bigscreen = 500;
 
