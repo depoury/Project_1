@@ -18,8 +18,12 @@ void keyPressed() {
   if (key == CODED) {
     if (keyCode == RIGHT) {
       x += 1;
+    } else if (keyCode == LEFT) {
+      x -= 1;
     } else if (keyCode == DOWN) {
       y += 1;
+    } else if (keyCode == UP) {
+      y -= 1;
     }
   }
 }
