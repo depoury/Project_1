@@ -3,12 +3,12 @@ int y = 0;
 
 void setup() {
   fullScreen();
-  background(255, 255, 255);
-  stroke(0, 0, 0);
+  background(0, 0, 0);
+  stroke(255, 255, 255);
 }
  
 void draw() {
-  background(255, 255, 255);
+  background(0, 0, 0);
   line(x, 0, x, height);
   line(0, y, width, y);
   println(x, y);
