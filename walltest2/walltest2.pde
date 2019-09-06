@@ -11,9 +11,15 @@ void draw() {
   background(255, 255, 255);
   line(x, 0, x, height);
   line(0, y, width, y);
+  println(x, y);
 }
 
 void keyPressed() {
-  x += 1;
-  y += 1;
+  if (key == CODED) {
+    if (keyCode == RIGHT) {
+      x += 1;
+    } else if (keyCode == DOWN) {
+      y += 1;
+    }
+  }
 }
