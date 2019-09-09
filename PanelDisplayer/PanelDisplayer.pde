@@ -16,25 +16,32 @@ wPanel pN = new wPanel(64,612,panelScale);
 wPanel pO = new wPanel(0,573,panelScale);
 wPanel[] panelList = {pA, pB, pC, pD, pE, pF, pG, pH, pI, pJ, pK, pL, pM, pN, pO};
 
+ArrayList<wPanel> unusedPanels = new ArrayList<wPanel>();
+ArrayList<pSquare> squares= new ArrayList<pSquare>();
 
 void setup(){
   fullScreen(2);
+  for(int i = 0; i < panelList.length; i++) { //add panels to unused arraylist
+      unusedPanels.add(panelList[i]);
+  }
 }
 int size;
 void draw(){
     background(0);
-    int[] toDraw = {1,2,3,4,5,6,7,8};
-    for(int i: toDraw) {
-      panelList[i].drawPrep();
-      fill(255);
-      circle(50,50,sin(TWO_PI * size * 0.001) * 100);
-      panelList[i].drawSet();
-  }
-  size++;
-  if(size == 1000) {
-    size = 0;
-  }
-  delay(5);
+    for(int i = 0; i < squares.size(); i++) {
+      squares.get(i).update();
+      if(squares.get(i).done) {
+        squares.remove(i);
+      }
+    }
+    int chance = int(random(100));
+    if(chance > 50 && unusedPanels.size() > 0) {
+      int nextPanel = int(random(unusedPanels.size()));
+      wPanel next = unusedPanels.get(nextPanel);
+      pSquare d = new pSquare(next);
+      unusedPanels.remove(nextPanel);
+      squares.add(d);
+    }
 
 }
 
@@ -61,5 +68,32 @@ class wPanel {
     scale(drawSize/24,drawSize/21);
     translate(-corner1x,-corner1y);
     pBusy = false;
+  }
+}
+
+
+
+class pSquare { //demo
+  int time;
+  color pColor;
+  wPanel current;
+  boolean done;
+  pSquare(wPanel p) {
+    pColor = color(random(255),random(255),random(255));
+    time = int(panelScale);
+    current = p;
+    done = false;
+  }
+  void update() {
+    current.drawPrep();
+    fill(pColor);
+    rect(0,panelScale-time,panelScale,time);
+    current.drawSet();
+    time--;
+    if(time == 0) {
+      done = true;
+      unusedPanels.add(current);
+      println("Deleting pannel " + current);
+    }
   }
 }
