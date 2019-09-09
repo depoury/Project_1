@@ -35,7 +35,7 @@ void draw(){
       }
     }
     int chance = int(random(100));
-    if(chance > 50 && unusedPanels.size() > 0) {
+    if(chance > 80 && unusedPanels.size() > 0) {
       int nextPanel = int(random(unusedPanels.size()));
       wPanel next = unusedPanels.get(nextPanel);
       pSquare d = new pSquare(next);
@@ -95,5 +95,6 @@ class pSquare { //demo
       unusedPanels.add(current);
       println("Deleting pannel " + current);
     }
+    delay(2);
   }
 }
