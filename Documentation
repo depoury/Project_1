@@ -1,0 +1,36 @@
+
+
+The Becton Center wall display is divided into 17 different sections. The native resolution of the entire display is 1024 x 768.
+
+The largest parts are the two sections mounted in the Becton café, on the wall and ceiling. 
+
+Ceiling- x: 676-1023	y: 0-448
+Wall-	 x: 676-1023	y: 453-767
+
+Note that they are almost perfectly contiguous with the exception of a five-pixel strip between y=448 and y=453
+
+The smaller hallway squares are each 24 pixels wide and 21 pixels tall. Their locations, if they are listed from RIGHT to LEFT when one is FACING the entrance to the Becton café, are:
+
+~First East-Facing Wall~
+
+A-		x: 578-602		y: 660-681
+B-		x: 521-545		y: 590-611
+C-		x: 498-522		y: 570-591
+D-		x: 472-496		y: 680-701
+E-		x: 444-468		y: 590-611
+F-      x: 420-444		y: 611-632
+G-		x: 397-421		y: 611-632
+H-		x: 362-386		y: 570-591
+
+~South-Facing Wall~
+
+I-		x: 306-330		y: 570-591
+J-		x: 283-307		y: 590-611
+K-		x: 183-207		y: 592-613
+L-		x: 125-149		y: 612-633
+
+~Second East-Facing Wall~
+
+M-		x: 88-112		y: 592-613
+N-		x: 64-88		y: 612-633
+O-		x: 0-24			y: 573-594
