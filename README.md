@@ -52,9 +52,7 @@ L-		x: 125-149		y: 612-633
 -Second East-Facing Wall-
 
 M-		x: 88-112		y: 592-613
-
 N-		x: 64-88		y: 612-633
-
 O-		x: 0-24			y: 573-594
 
 
@@ -72,3 +70,5 @@ PanelDisplayer contains a program that allows for simple mapping to the panels l
 4. unusedPanels is an arraylist that contains all of the currently unused panels for the sake of keeping track and allowing for new classes to select from panels that are not currently used. It is populated during setup currently but this can be changed.
 
 5. The wPanel class has 2 methods within it: drawPrep, which prepares, through scaling and translation, to draw to that panel, in the 'window' determined by panelScale and drawSet, which resets the scale and translation so that other things may be drawn normally or so another panel may run drawPrep without error.
+
+Within PanelDisplayer currently is a demo class, pSquares, that shows what you can do with these functions, by randomly selecting unused panels and flashing squares onto them for a breif period of tim, which fall and disappear leaving the panel free to be used again.
