@@ -20,7 +20,7 @@ Note that they are almost perfectly contiguous with the exception of a five-pixe
 
 The smaller hallway squares are each 24 pixels wide and 21 pixels tall. Their locations, if they are listed from RIGHT to LEFT when one is FACING the entrance to the Becton café, are:
 
-~First East-Facing Wall~
+-First East-Facing Wall-
 
 A-		x: 578-602		y: 660-681
 B-		x: 521-545		y: 590-611
@@ -31,14 +31,14 @@ F-      x: 420-444		y: 611-632
 G-		x: 397-421		y: 611-632
 H-		x: 362-386		y: 570-591
 
-~South-Facing Wall~
+-South-Facing Wall-
 
 I-		x: 306-330		y: 570-591
 J-		x: 283-307		y: 590-611
 K-		x: 183-207		y: 592-613
 L-		x: 125-149		y: 612-633
 
-~Second East-Facing Wall~
+-Second East-Facing Wall-
 
 M-		x: 88-112		y: 592-613
 N-		x: 64-88		y: 612-633
