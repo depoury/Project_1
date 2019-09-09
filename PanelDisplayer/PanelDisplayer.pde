@@ -20,7 +20,7 @@ ArrayList<wPanel> unusedPanels = new ArrayList<wPanel>(); //creates array list f
 ArrayList<pSquare> squares= new ArrayList<pSquare>(); //keeps track of 'squares' running
 
 void setup(){
-  fullScreen(2);
+  fullScreen();
   for(int i = 0; i < panelList.length; i++) { //add panels to unused arraylist
       unusedPanels.add(panelList[i]);
   }
