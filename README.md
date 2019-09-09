@@ -55,3 +55,18 @@ M-		x: 88-112		y: 592-613
 N-		x: 64-88		y: 612-633
 O-		x: 0-24			y: 573-594
 
+
+
+=========PANEL DISPLAY SOFTWARE============
+
+PanelDisplayer contains a program that allows for simple mapping to the panels listed above. Some important things to note about its contents:
+
+1. wPanel is a class containing information for an arbitrary 'panel,' one instance for each actual panel is created with their coordinates as we found them
+
+2. panelScale allows for the adjustment of the abstract 'window' in which drawing for each panel occurs, a square with side lengths of this size in pixels (of range 0-panelScale) will be scaled down to fit into the panels at the time of drawing.
+
+3. panelList simply contains a list of all the panels for the sake of iteration and such later.
+
+4. unusedPanels is an arraylist that contains all of the currently unused panels for the sake of keeping track and allowing for new classes to select from panels that are not currently used. It is populated during setup currently but this can be changed.
+
+5. The wPanel class has 2 methods within it: drawPrep, which prepares, through scaling and translation, to draw to that panel, in the 'window' determined by panelScale and drawSet, which resets the scale and translation so that other things may be drawn normally or so another panel may run drawPrep without error.
