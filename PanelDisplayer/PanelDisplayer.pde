@@ -1,5 +1,5 @@
-float panelScale = 100;
-wPanel pA = new wPanel(578,660,panelScale);
+float panelScale = 100;  //set scale at which drawings can be made that will be sent to panels
+wPanel pA = new wPanel(578,660,panelScale); //creates the panel locations in their respective objects
 wPanel pB = new wPanel(521,590,panelScale);
 wPanel pC = new wPanel(498,570,panelScale);
 wPanel pD = new wPanel(472,680,panelScale);
@@ -14,10 +14,10 @@ wPanel pL = new wPanel(125,612,panelScale);
 wPanel pM = new wPanel(88,592,panelScale);
 wPanel pN = new wPanel(64,612,panelScale);
 wPanel pO = new wPanel(0,573,panelScale);
-wPanel[] panelList = {pA, pB, pC, pD, pE, pF, pG, pH, pI, pJ, pK, pL, pM, pN, pO};
+wPanel[] panelList = {pA, pB, pC, pD, pE, pF, pG, pH, pI, pJ, pK, pL, pM, pN, pO}; //creates list of panels
 
-ArrayList<wPanel> unusedPanels = new ArrayList<wPanel>();
-ArrayList<pSquare> squares= new ArrayList<pSquare>();
+ArrayList<wPanel> unusedPanels = new ArrayList<wPanel>(); //creates array list for keeping track of panels in use
+ArrayList<pSquare> squares= new ArrayList<pSquare>(); //keeps track of 'squares' running
 
 void setup(){
   fullScreen(2);
@@ -28,14 +28,14 @@ void setup(){
 int size;
 void draw(){
     background(0);
-    for(int i = 0; i < squares.size(); i++) {
+    for(int i = 0; i < squares.size(); i++) { //iterates through square array list to update and remove unused squares 
       squares.get(i).update();
       if(squares.get(i).done) {
         squares.remove(i);
       }
     }
-    int chance = int(random(100));
-    if(chance > 80 && unusedPanels.size() > 0) {
+    int chance = int(random(100)); //generates new squares on chance 
+    if(chance > 90 && unusedPanels.size() > 0) {
       int nextPanel = int(random(unusedPanels.size()));
       wPanel next = unusedPanels.get(nextPanel);
       pSquare d = new pSquare(next);
@@ -46,7 +46,7 @@ void draw(){
 }
 
 
-class wPanel {
+class wPanel { //panel class stores data about location & allows for scaled drawing
   float corner1x, corner1y, corner2x, corner2y, panelWidth, panelHeight, drawSize;
   boolean pBusy;
   wPanel(float x, float y, float dS) {
