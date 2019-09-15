@@ -1,5 +1,6 @@
 # Project_1
 
+This is Yuki's Fork of Prject 1 for CPSC 334.
 
 In order to find the dimensions of the displays across the cafe, we used crosshairs that we can move across the entire screen space to determine dimensions of the display panels. To do this, two white lines that extended across the black screen move up, down, left, and right using the arrow keys. The approximate x and y-coordinates are labeled next to the intersection of the lines. 
 
