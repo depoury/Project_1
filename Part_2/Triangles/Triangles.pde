@@ -31,9 +31,9 @@ panel A = new panel(578, 660, B);
 prey test = new prey(0);
 
 void setup() {
-  //fullScreen(1);
-  frameRate(100);
-  size(1024, 768);
+  fullScreen(1);
+  frameRate(20);
+  //size(1024, 768);
   stroke(0, 0, 0);
   /*
   test.x = 400;
@@ -52,14 +52,14 @@ void draw() {
   rect(LEFT, TOP, (RIGHT - LEFT), (BOTTOM - TOP));
   //test.move();
   //test.drawMe();
-  //b.move();
-  b.drawMe();
+  b.move();
+  //b.drawMe();
   a.approach(ballX, ballY);
   A.drawBox();
   A.drawMe();
   //a.info();
   //b.info();
-  delay(5);
+  delay(2);
 }
 
 class team {
