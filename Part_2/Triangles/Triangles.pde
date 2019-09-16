@@ -127,32 +127,22 @@ class prey {
   }
   
   void calculateAngle(float cx, float cy) {
-    if (abs(this.x - cx) < 5 && abs(this.y - cy) < 5) {
+    
+    if (abs(this.x - cx) < 3 && abs(this.y - cy) < 3) {
       println("Triangle " + this.myID + " Finished.");
       this.stop = true;
+      return;
     }
-    int testx = (int) cx;
-    int testy = (int) cy;
     
+    /*
     if (abs((cx - this.x) / (this.y - cy)) > 1) {
-      if (abs(this.y - cy) < 5) {
-        if (this.x < cx) {
-          this.angle = (PI / 2.0);
-        } else {
-          this.angle = -(PI / 2.0);
-        }
-      } else if (abs(this.x - cx) < 5) {
-        if (this.y < cy) {
-          angle = PI;
-        } else {
-          angle = 0;
-        }
-      } else {
-        println("WE SHOULDN'T REACH HERE...");
-      }
+      println("CX: " + cx + " | CY: " + cy + " | X: " + this.x + " | Y: " + this.y + " | Total: " + abs((cx - this.x) / (this.y - cy)));
     } else {
-      this.angle = asin((cx - this.x) / (this.y - cy));
+      this.angle = atan((cx - this.x) / (this.y - cy));
     }
+    */
+    
+    this.angle = atan((cx - this.x) / (this.y - cy));
    
     if (this.y < cy) {
       this.angle += PI;
