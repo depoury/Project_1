@@ -12,6 +12,22 @@ ball b;
 float ballX = 800;
 float ballY = 400;
 
+panel O = new panel(0, 573);
+panel N = new panel(64, 612, O);
+panel M = new panel(88, 592, N);
+panel L = new panel(125, 612, M);
+panel K = new panel(183, 592, L);
+panel J = new panel(283, 590, K);
+panel I = new panel(306, 570, J);
+panel H = new panel(362, 570, I);
+panel G = new panel(396, 611, H);
+panel F = new panel(420, 611, G);
+panel E = new panel(444, 590, F);
+panel D = new panel(472, 680, E);
+panel C = new panel(498, 570, D);
+panel B = new panel(521, 590, C);
+panel A = new panel(578, 660, B);
+
 prey test = new prey(0);
 
 void setup() {
@@ -31,6 +47,7 @@ void setup() {
 
 void draw() {
   background(255, 255, 255);
+  stroke(0, 0, 0);
   fill(0, 255, 0);
   rect(LEFT, TOP, (RIGHT - LEFT), (BOTTOM - TOP));
   //test.move();
@@ -38,6 +55,7 @@ void draw() {
   b.move();
   //b.drawMe();
   a.approach(ballX, ballY);
+  A.drawMe();
   //a.info();
   //b.info();
   delay(5);
@@ -131,6 +149,7 @@ class prey {
     if (abs(this.x - cx) < 3 && abs(this.y - cy) < 3) {
       //println("Triangle " + this.myID + " Finished.");
       this.stop = true;
+      A.light(this.myColour);
       return;
     }
     
@@ -173,6 +192,8 @@ class prey {
   
   void drawMe() {
     this.calculateVertices();
+    strokeWeight(1);
+    stroke(0, 0, 0);
     fill(this.myColour);
     this.x = (int) this.x;
     this.y = (int) this.y;
@@ -257,13 +278,69 @@ class ball {
   }
   
   void drawMe() {
+    strokeWeight(1);
+    stroke(0, 0, 0);
     fill(this.myColour);
     circle(ballX, ballY, 20);
-    printColour(this.myColour);
+    //printColour(this.myColour);
   }
   
   void info() {
     println("ball (x,y): " + ballX + ", " + ballY + ")");
+  }
+}
+
+class panel {
+  int x;
+  int y;
+  int h = 21;
+  int w = 24;
+  color myColours[] = new color[this.w];
+  int cur = 0;
+  panel next;
+  
+  panel(int nx, int ny) {
+    this.x = nx;
+    this.y = ny;
+    for (int i = 0; i < this.w; i++) {
+      this.myColours[i] = color(0, 0, 0);
+    }
+    this.next = null;
+  }
+  
+  panel(int nx, int ny, panel nNext) {
+    this.x = nx;
+    this.y = ny;
+    for (int i = 0; i < this.w; i++) {
+      this.myColours[i] = color(0, 0, 0);
+    }
+    this.next = nNext;
+  }
+  
+  void light(color c) {
+    this.shift();
+    this.myColours[0] = c;
+  }
+  
+  void shift() {
+    if (this.cur == this.w - 1) {
+      if (this.next != null) { 
+        this.next.light(this.myColours[this.w - 1]);
+      }
+    } else {
+      this.cur++;
+    }
+    for (int i = this.cur; i > 0; i--) {
+      this.myColours[i] = this.myColours[i - 1];
+    }
+  }
+  
+  void drawMe() {
+    strokeWeight(2);
+    for (int i = this.cur - 1; i < this.w; i++) {
+      stroke(this.myColours[i]);
+      line(this.x + i, this.y, this.x + i, this.y + this.h);
+    }
   }
 }
 
