@@ -24,7 +24,7 @@ void setup() {
   test.y = 400;
   test.angle = (0); 
   */
-  a = new team(3);
+  a = new team(11);
   //a.info();
   b = new ball();
 }
@@ -129,7 +129,7 @@ class prey {
   void calculateAngle(float cx, float cy) {
     
     if (abs(this.x - cx) < 3 && abs(this.y - cy) < 3) {
-      println("Triangle " + this.myID + " Finished.");
+      //println("Triangle " + this.myID + " Finished.");
       this.stop = true;
       return;
     }
@@ -192,50 +192,65 @@ class prey {
 
 class ball {
   color myColour; 
-  int speed = 6;
+  int speedx = 3;
+  int speedy = 3;
   
   ball() {
     ballX = LEFT + (RIGHT - LEFT) / 2;
     ballY = TOP + (BOTTOM - TOP) / 2;
-    this.myColour = color(random(10, 245), random(10, 245), random(10, 245));
+    this.myColour = color(random(100, 245), random(100, 245), random(100, 245));
   }
   
   ball(int nx, int ny) {
     ballX = nx;
     ballY = ny;
-    this.myColour = color(random(10, 245), random(10, 245), random(10, 245));
+    this.myColour = color(random(100, 245), random(100, 245), random(100, 245));
   }
   
   void move() {
-    ballX += random(-speed, speed);
-    ballY += random(-speed, speed);
+    speedx += random(-3, 3);
+    speedy += random(-3, 3);
+    ballX += speedx;
+    ballY += speedy;
     
     if (ballX < LEFT + 10) {
-      ballX += 10;
+      ballX += (int) abs(2 * speedx);
     } else if (ballX > RIGHT - 10) {
-      ballX -= 10;
+      ballX -= (int) abs(2 * speedx);
     }
     if (ballY < TOP + 10) {
-      ballY += 10;
+      ballY += (int) abs(2 * speedy);
     } else if (ballY > BOTTOM - 10) {
-      ballY -= 10;
+      ballY -= (int) abs(2 * speedy);
     }
     
     int r = this.myColour >> 16 & 0xFF;
     int g = this.myColour >> 8 & 0xFF;
     int b = this.myColour & 0xFF;
-    r += random(-5, 5);
-    g += random(-5, 5);
-    b += random(-5, 5);
+    
+    int tmp = (int) random(0, 3);
+    if (tmp == 0) {
+      r += random(-10, 10);
+    } else if (tmp == 1) {
+      g += random(-10, 10);
+    } else if (tmp == 2) {
+      b += random(-10, 10);
+    }
     
     if (r > 255) {
       r -= 10;
+    } else if (r < 100) {
+      r += 10;
     }
     if (g > 255) {
       g -= 10;
+    } else if (g < 100) {
+      g += 10;
     }
     if (b > 255) {
       b -= 10;
+    } else if (b < 100) {
+      b += 10;
     }
     this.myColour = color(r, g, b);
     this.drawMe();
@@ -244,9 +259,17 @@ class ball {
   void drawMe() {
     fill(this.myColour);
     circle(ballX, ballY, 20);
+    printColour(this.myColour);
   }
   
   void info() {
     println("ball (x,y): " + ballX + ", " + ballY + ")");
   }
+}
+
+void printColour(color c) {
+  int r = c >> 16 & 0xFF;
+  int g = c >> 8 & 0xFF;
+  int b = c & 0xFF;
+  println("(r,g,b): (" + r + ", " + g + ", " + b + ")");
 }
