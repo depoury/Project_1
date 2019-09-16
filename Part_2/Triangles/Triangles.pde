@@ -1,3 +1,7 @@
+//0 is UP
+//-(PI / 2.0) is LEFT
+//PI is DOWN
+//(PI / 2.0) is RIGHT
 int LEFT = 676;
 int RIGHT = 1023;
 int TOP = 0;
@@ -8,11 +12,18 @@ ball b;
 float ballX = 800;
 float ballY = 400;
 
+prey test = new prey(0);
+
 void setup() {
   //fullScreen(1);
-  frameRate(30);
+  frameRate(40);
   size(1024, 768);
   stroke(0, 0, 0);
+  /*
+  test.x = 400;
+  test.y = 400;
+  test.angle = (0); 
+  */
   a = new team(3);
   //a.info();
   b = new ball();
@@ -22,7 +33,10 @@ void draw() {
   background(255, 255, 255);
   fill(0, 255, 0);
   rect(LEFT, TOP, (RIGHT - LEFT), (BOTTOM - TOP));
+  //test.move();
+  //test.drawMe();
   b.move();
+  //b.drawMe();
   a.approach(ballX, ballY);
   //a.info();
   //b.info();
@@ -97,7 +111,7 @@ class prey {
   float y2;
   float y3;
   
-  float oldAngle;
+  //float oldAngle;
   float angle;
   
   prey (int ID) {
@@ -121,16 +135,20 @@ class prey {
     int testy = (int) cy;
     
     if (abs((cx - this.x) / (this.y - cy)) > 1) {
-      if (testx < this.x) {
+      if (abs(this.y - cy) < 5) {
+        if (this.x < cx) {
           this.angle = (PI / 2.0);
-      } else if (testx > this.x) {
-          this.angle = (-PI / 2.0);
-      } else {
-        if (testy < this.y) {
-          this.angle = 0;
         } else {
-          this.angle = PI;
+          this.angle = -(PI / 2.0);
         }
+      } else if (abs(this.x - cx) < 5) {
+        if (this.y < cy) {
+          angle = PI;
+        } else {
+          angle = 0;
+        }
+      } else {
+        println("WE SHOULDN'T REACH HERE...");
       }
     } else {
       this.angle = asin((cx - this.x) / (this.y - cy));
@@ -140,9 +158,11 @@ class prey {
       this.angle += PI;
     }
     
+    /*
     if (this.oldAngle == -55) {
       this.oldAngle = this.angle;
     }
+    
     if (this.oldAngle != this.angle) {
       if (this.oldAngle < this.angle - (PI / 2)) {
         this.oldAngle -= min((PI / 60), abs((this.oldAngle - this.angle)));
@@ -150,7 +170,8 @@ class prey {
         this.oldAngle += min((PI / 60), abs((this.oldAngle - this.angle)));
       }
     }
-    
+    this.angle = this.oldAngle;
+    */
   }
   
   void calculateVertices() {
@@ -227,6 +248,10 @@ class ball {
       b -= 10;
     }
     this.myColour = color(r, g, b);
+    this.drawMe();
+  }
+  
+  void drawMe() {
     fill(this.myColour);
     circle(ballX, ballY, 20);
   }
