@@ -32,7 +32,7 @@ prey test = new prey(0);
 
 void setup() {
   //fullScreen(1);
-  frameRate(40);
+  frameRate(100);
   size(1024, 768);
   stroke(0, 0, 0);
   /*
@@ -52,9 +52,10 @@ void draw() {
   rect(LEFT, TOP, (RIGHT - LEFT), (BOTTOM - TOP));
   //test.move();
   //test.drawMe();
-  b.move();
-  //b.drawMe();
+  //b.move();
+  b.drawMe();
   a.approach(ballX, ballY);
+  A.drawBox();
   A.drawMe();
   //a.info();
   //b.info();
@@ -303,7 +304,7 @@ class panel {
     this.x = nx;
     this.y = ny;
     for (int i = 0; i < this.w; i++) {
-      this.myColours[i] = color(0, 0, 0);
+      this.myColours[i] = color(255, 255, 255);
     }
     this.next = null;
   }
@@ -312,7 +313,7 @@ class panel {
     this.x = nx;
     this.y = ny;
     for (int i = 0; i < this.w; i++) {
-      this.myColours[i] = color(0, 0, 0);
+      this.myColours[i] = color(255, 255, 255);
     }
     this.next = nNext;
   }
@@ -336,10 +337,25 @@ class panel {
   }
   
   void drawMe() {
+    if (this.cur == 0) {
+      return;
+    }
     strokeWeight(2);
-    for (int i = this.cur - 1; i < this.w; i++) {
+    for (int i = this.cur - 1; i >= 0; i--) {
       stroke(this.myColours[i]);
       line(this.x + i, this.y, this.x + i, this.y + this.h);
+    }
+    if (next != null) {
+      next.drawMe();
+    }
+  }
+  
+  void drawBox() {
+    strokeWeight(1);
+    stroke(0, 0, 0);
+    rect(this.x, this.y, this.w, this.h);
+    if (next != null) {
+      next.drawBox();
     }
   }
 }
