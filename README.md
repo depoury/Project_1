@@ -2,6 +2,24 @@
 
 This is Yuki's Fork of Project 1 for CPSC 334.
 
+--- Part 2 ---
+
+Link to Videos:
+https://youtu.be/QNVfxRJMDck
+https://youtu.be/Akulcv4JEoA
+
+I designed a program that shows triangles chasing a circle.
+As they catch the circle, a line of the same colour as the triangle is added to the panels outside.
+This plays with randomness as well as the fun of watching the chase.
+
+To run at boot:
+Clone the repo and change the hardcoded path to your .pde directory in the file named run.py
+Add a line to /etc/xdg/lxsession/LXDE-*/autostart
+	@python PATH_TO_PYTHON_SCRIPT/run.py
+
+
+--- Part 1 ---
+
 In order to find the dimensions of the displays across the cafe, we used crosshairs that we can move across the entire screen space to determine dimensions of the display panels. To do this, two white lines that extended across the black screen move up, down, left, and right using the arrow keys. The approximate x and y-coordinates are labeled next to the intersection of the lines. 
 
 Aside from the large contiguous display inside the cafe, the square display panels are labeled from "A" to "O". 
